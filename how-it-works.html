@@ -32,6 +32,7 @@
     }
     header a.home:hover { color: var(--gold); }
     header img.logo { height: 40px; }
+
     main {
       max-width: 800px;
       margin: 2rem auto;
@@ -46,7 +47,9 @@
     p, li { color: var(--offwhite); }
     ul { list-style: none; padding: 0; }
     ul li::before { content: "•"; color: var(--gold); display: inline-block; width: 1em; }
+
     .section { margin-bottom: 2rem; }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -59,53 +62,84 @@
 <body>
   <header>
     <a href="index.html" class="home">← Home</a>
-    <img src="arch_icon.png" alt="Portico Logo" class="logo" />
+    <img src="arch_icon3.png" alt="Portico Logo" class="logo" />
   </header>
+
   <main>
     <h1>How It Works</h1>
 
+    <!-- 1. Why Private Equity? -->
     <div class="section">
       <h2>1. Why Private Equity?</h2>
+      <p>
+        Private equity (PE) means investing in privately held companies—or buyouts of public firms—to drive operational improvements and unlock outsized returns over the long term.
+      </p>
       <ul>
-        <li>10-Year Net IRR (Top Quartile Funds): 20–25%+</li>
-        <li>Average Global PE IRR: 14%</li>
-        <li>2000–2020 Cumulative Return: 4.2×</li>
+        <li><strong>Top-quartile net IRR:</strong> 20–25%+ over the past decade</li>
+        <li><strong>Average global PE IRR:</strong> ~14% vs. ~10% annualized S&P 500 returns</li>
+        <li><strong>2000–2020 cumulative return:</strong> 4.2× for PE vs. 2.5× for the S&P 500</li>
+      </ul>
+      <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
+    </div>
+
+    <!-- 2. Historically Off-Limits -->
+    <div class="section">
+      <h2>2. Historically Off-Limits</h2>
+      <p>
+        Despite those stellar returns, PE has been gated behind:
+      </p>
+      <ul>
+        <li><strong>High minimums:</strong> Often $250K+ per fund</li>
+        <li><strong>Accredited-only access:</strong> Income & net-worth tests</li>
+        <li><strong>Long lock-ups:</strong> 7–10 year capital commitments</li>
+        <li><strong>Complex tax reporting:</strong> K-1s, opaque valuations</li>
+      </ul>
+      <p>
+        Everyday investors simply haven’t had a seat at the table—until now.
+      </p>
+    </div>
+
+    <!-- 3. Portico’s Solution -->
+    <div class="section">
+      <h2>3. Portico’s Solution</h2>
+      <p>
+        Portico breaks down every barrier so you can tap into PE’s power:
+      </p>
+      <ul>
+        <li><strong>$100 minimums:</strong> Make real allocations on any budget</li>
+        <li><strong>No accreditation needed:</strong> Open to all U.S. residents</li>
+        <li><strong>Quarterly liquidity @ 95% NAV:</strong> No decade-long lock-ups</li>
+        <li><strong>Reg A+ compliance:</strong> Fully SEC-registered offering</li>
+        <li><strong>AI-powered curation:</strong> We match you with top-performing funds</li>
       </ul>
     </div>
 
+    <!-- 4. Opening Access -->
     <div class="section">
-      <h2>2. The Problem</h2>
+      <h2>4. Opening Access</h2>
+      <p>
+        Portico’s platform tears down the old barriers so anyone can invest in private equity:
+      </p>
       <ul>
-        <li>$250K+ minimums</li>
-        <li>Accredited-only access</li>
-        <li>7–10 year lockups</li>
-        <li>Complex K-1 tax reporting</li>
-        <li>Opaque, blind pools</li>
+        <li>Instant, AI-powered onboarding—no manual paperwork</li>
+        <li>$100 minimums and zero accreditation hurdles</li>
+        <li>Transparent dashboards with real-time metrics & quarterly liquidity</li>
       </ul>
     </div>
 
+    <!-- 5. Why Now? -->
     <div class="section">
-      <h2>3. Our Solution</h2>
-      <ul>
-        <li>$100 minimums</li>
-        <li>Quarterly liquidity (95% NAV)</li>
-        <li>No accreditation needed</li>
-        <li>AI-powered onboarding</li>
-        <li>Curated funds with proven track records</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>4. Why Now?</h2>
+      <h2>5. Why Now?</h2>
       <ul>
         <li>Reg A+ opens retail access</li>
-        <li>Market volatility drives demand</li>
-        <li>Technology lowers barriers</li>
+        <li>Market volatility drives demand for alternatives</li>
+        <li>Technology lowers barriers like never before</li>
       </ul>
     </div>
 
+    <!-- 6. Join the Movement -->
     <div class="section">
-      <h2>5. Join the Movement</h2>
+      <h2>6. Join the Movement</h2>
       <p>
         Ready to unlock private equity?  
         <a href="index.html" style="color:var(--gold); text-decoration:underline;">Back to Waitlist →</a>
@@ -116,5 +150,47 @@
   <footer>
     © 2025 Portico Financial • <a href="index.html" style="color:var(--offwhite); text-decoration:none;">Home</a>
   </footer>
+
+  <!-- Chart.js embed -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
+    const rPe = Math.pow(4.2, 1/20) - 1;
+    const rSp = Math.pow(2.5, 1/20) - 1;
+
+    const peData = years.map(y => Math.pow(1 + rPe, y - 2000).toFixed(2));
+    const spData = years.map(y => Math.pow(1 + rSp, y - 2000).toFixed(2));
+
+    new Chart(document.getElementById('peChart'), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Private Equity',
+            data: peData,
+            fill: false,
+            tension: 0.3
+          },
+          {
+            label: 'S&P 500',
+            data: spData,
+            fill: false,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { title: { display: true, text: 'Year' } },
+          y: { title: { display: true, text: 'Cumulative Multiple' } }
+        },
+        plugins: {
+          legend: { position: 'top', labels: { color: 'white' } }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
