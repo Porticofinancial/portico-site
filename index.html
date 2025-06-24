@@ -5,91 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portico</title>
   <style>
-    :root {
-      --midnight: #0B0C1A;
-      --gold: #FFD700;
-      --offwhite: #f4f4f4;
-    }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--midnight);
-      color: var(--offwhite);
+      background-color: #0f0d2a;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
       min-height: 100vh;
-      padding: 0;
+      padding: 2rem;
     }
 
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem;
-      max-width: 800px;
+    .container {
+      max-width: 520px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo img {
-      height: 100px;
+      height: 80px;
       margin-bottom: 2rem;
     }
 
     h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: white;
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
     }
 
-    p.subtitle {
-      font-size: 1.25rem;
+    p {
+      font-size: 1.2rem;
       color: #cccccc;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
-    .cta-button {
-      background-color: var(--gold);
-      color: var(--midnight);
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
+    form {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input[type="email"] {
+      padding: 1rem;
+      font-size: 1rem;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-decoration: none;
-      display: inline-block;
+      border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .cta-button:hover {
+    button {
+      background-color: #FFD700;
+      color: #0f0d2a;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
       background-color: #e6c200;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #666;
     }
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
       .logo img {
-        height: 70px;
-      }
-
-      p.subtitle {
-        font-size: 1.1rem;
+        height: 60px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
+  <div class="container">
     <div class="logo">
-      <img src="arch_icon3.png" alt="Portico Logo"/>
+      <img src="arch_icon3.png" alt="Portico Logo" />
     </div>
     <h1>Private Equity, Opened.</h1>
-    <p class="subtitle">Portico makes investing in the private markets accessible to all.</p>
-    <a class="cta-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdHdjEQ_lTqyg7-ywE6TkYdoXYcqk7GsC-rJMI-a8INnNv3Fg/viewform" target="_blank">
-      Join the Waitlist
-    </a>
+    <p>Invest like an insider—without needing to be one.</p>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdHdjEQ_lTqyg7-ywE6TkYdoXYcqk7GsC-rJMI-a8INnNv3Fg/formResponse" target="_blank">
+      <input type="email" name="entry.1234567890" placeholder="Enter your email" required />
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <footer>© 2025 Portico Financial</footer>
   </div>
 </body>
 </html>
