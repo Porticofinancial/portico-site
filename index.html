@@ -4,37 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portico – Private Equity, Opened</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #20125d;
+      background-color: #20105c;
       color: white;
-      text-align: center;
     }
 
     header {
-      padding: 60px 20px 40px;
-    }
-
-    .arch-icon {
-      height: 48px;
-      margin-bottom: 12px;
+      text-align: center;
+      padding: 80px 20px 60px;
     }
 
     .brand-name {
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 700;
       letter-spacing: 1px;
-      margin: 0 0 10px;
+      margin-bottom: 20px;
+    }
+
+    .headline {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
 
     .subheading {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 400;
-      color: #e0e0e0;
-      margin-bottom: 30px;
+      margin-bottom: 2rem;
     }
 
     .cta-button {
@@ -42,12 +44,12 @@
       color: #111;
       border: none;
       padding: 14px 28px;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       transition: background-color 0.3s;
     }
 
@@ -60,46 +62,9 @@
       flex-direction: column;
       align-items: center;
       padding: 60px 20px;
-      gap: 24px;
+      gap: 30px;
       background-color: #f9f9f9;
       color: #111;
-    }
-
-    .feature {
-      background-color: white;
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 300px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      border-top: 4px solid #311f79;
-      text-align: center;
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.85rem;
-      color: #ccc;
-      background-color: #20125d;
-    }
-
-    .footer-links {
-      margin-top: 10px;
-    }
-
-    .footer-links a {
-      margin: 0 10px;
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
     }
 
     @media (min-width: 768px) {
@@ -108,13 +73,51 @@
         justify-content: center;
       }
     }
+
+    .feature {
+      background-color: white;
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 300px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      border-top: 4px solid #311f79;
+      text-align: center;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      color: #ccc;
+      background-color: #20105c;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      margin: 0 12px;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="arch_icon.png" alt="Portico Icon" class="arch-icon"/>
-    <h1 class="brand-name">PORTICO</h1>
-    <p class="subheading">Private Equity, Opened. Everyday investors now have a seat at the table.</p>
+    <div class="brand-name">PORTICO</div>
+    <div class="headline">Private Equity, Opened.</div>
+    <div class="subheading">Everyday investors now have a seat at the table.</div>
     <a href="https://forms.gle/X9qRdcU8NdDRsE2c9" class="cta-button" target="_blank">Join the Waitlist</a>
   </header>
 
