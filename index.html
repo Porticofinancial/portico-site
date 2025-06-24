@@ -11,65 +11,87 @@
       background-color: #181046;
       color: white;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
+      min-height: 100vh;
+      padding: 2rem;
     }
 
-    .logo {
-      margin-bottom: 2rem;
+    .container {
+      max-width: 600px;
     }
 
     .logo img {
-      height: 100px;
+      height: 90px;
+      margin-bottom: 2rem;
     }
 
     h1 {
       font-size: 2.8rem;
-      margin: 0 1rem 1.2rem 1rem;
-      line-height: 1.2;
+      margin-bottom: 1rem;
     }
 
     p {
       font-size: 1.2rem;
-      color: #dddddd;
-      margin: 0 1rem 2rem 1rem;
+      color: #cccccc;
+      margin-bottom: 2rem;
     }
 
-    .cta-button {
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
       background-color: #FFD700;
       color: #181046;
       padding: 1rem 2rem;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: bold;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #e6c200;
     }
 
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
+
       .logo img {
-        height: 70px;
+        height: 60px;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="logo">
-    <img src="arch_icon3.png" alt="Portico Logo" />
+  <div class="container">
+    <div class="logo">
+      <img src="arch_icon3.png" alt="Portico Logo"/>
+    </div>
+    <h1>Private Equity, Opened.</h1>
+    <p>Portico makes investing in the private markets accessible to all.</p>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdHdjEQ_lTqyg7-ywE6TkYdoXYcqk7GsC-rJMI-a8INnNv3Fg/formResponse" target="_blank">
+      <input type="email" name="entry.1234567890" placeholder="Enter your email" required />
+      <button type="submit">Join the Waitlist</button>
+    </form>
   </div>
-
-  <h1>Private Equity, Opened.</h1>
-  <p>Invest like an insider—without the insider club.</p>
-
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHdjEQ_lTqyg7-ywE6TkYdoXYcqk7GsC-rJMI-a8INnNv3Fg/viewform?usp=header" target="_blank" class="cta-button">Join the Waitlist</a>
-
 </body>
 </html>
