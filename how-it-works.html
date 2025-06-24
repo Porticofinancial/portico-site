@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How It Works – Portico</title>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     :root {
       --midnight: #0A0826;
       --gold:     #FFD700;
       --offwhite: #F4F4F4;
       --light:    #CCCCCC;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       margin: 0;
@@ -48,7 +52,9 @@
     ul { list-style: none; padding: 0; }
     ul li::before { content: "•"; color: var(--gold); display: inline-block; width: 1em; }
 
-    .section { margin-bottom: 2rem; }
+    .section {
+      margin-bottom: 2.5rem;
+    }
 
     footer {
       text-align: center;
@@ -66,14 +72,11 @@
   </header>
 
   <main>
-    <h1>How It Works</h1>
+    <h1 data-aos="fade-up">How It Works</h1>
 
-    <!-- 1. Why Private Equity? -->
-    <div class="section">
-      <h2>1. Why Private Equity?</h2>
-      <p>
-        Turn everyday capital into extraordinary gains:
-      </p>
+    <div class="section" data-aos="fade-up">
+      <h2>Why Private Equity?</h2>
+      <p>Turn everyday capital into extraordinary gains:</p>
       <ul>
         <li><strong>20–25% net IRR</strong>—institutional returns fueling compounding</li>
         <li><strong>Avg. IRR 14%</strong> vs. ~10% on the S&P 500</li>
@@ -82,9 +85,8 @@
       <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
     </div>
 
-    <!-- 2. Wall Street’s Best-Kept Secret -->
-    <div class="section">
-      <h2>2. Wall Street’s Best-Kept Secret</h2>
+    <div class="section" data-aos="fade-up" data-aos-delay="100">
+      <h2>Wall Street’s Best-Kept Secret</h2>
       <p>Until now, these returns were out of reach:</p>
       <ul>
         <li><strong>$250K+ minimums</strong> sidelining most investors</li>
@@ -95,9 +97,8 @@
       <p>Portico smashes every barrier.</p>
     </div>
 
-    <!-- 3. Portico’s Game-Changer -->
-    <div class="section">
-      <h2>3. Portico’s Game-Changer</h2>
+    <div class="section" data-aos="fade-up" data-aos-delay="200">
+      <h2>The Portico Advantage</h2>
       <p>Experience private equity without the gatekeepers:</p>
       <ul>
         <li><strong>$100 minimums</strong>—start small, dream big</li>
@@ -107,9 +108,8 @@
       </ul>
     </div>
 
-    <!-- 4. Ready to Join the Revolution? -->
-    <div class="section">
-      <h2>4. Ready to Join the Revolution?</h2>
+    <div class="section" data-aos="fade-up" data-aos-delay="300">
+      <h2>Join the Revolution</h2>
       <p>
         Transform your portfolio with powerhouse returns.  
         <a href="index.html" style="color:var(--gold); text-decoration:underline;">Secure your spot →</a>
@@ -120,6 +120,10 @@
   <footer>
     © 2025 Portico Financial • <a href="index.html" style="color:var(--offwhite); text-decoration:none;">Home</a>
   </footer>
+
+  <!-- AOS Scroll Library -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
 
   <!-- Chart.js embed -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
