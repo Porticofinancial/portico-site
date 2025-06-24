@@ -20,27 +20,22 @@
 
     .container {
       max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1.2rem;
     }
 
     .logo img {
-      height: 270px; /* 3x original 90px */
-      margin-bottom: 0.5rem;
+      height: 270px; /* Larger logo */
+      margin-bottom: 1rem;
     }
 
     h1 {
       font-size: 2.8rem;
-      margin: 0.2rem 0;
+      margin-bottom: 0.5rem;
     }
 
     p {
       font-size: 1.2rem;
       color: #cccccc;
-      margin: 0.2rem 0 1rem;
+      margin-bottom: 1.5rem;
     }
 
     form {
@@ -76,6 +71,7 @@
     }
 
     .factsheet-link {
+      margin-top: 2rem;
       font-size: 1rem;
     }
 
@@ -87,6 +83,12 @@
 
     .factsheet-link a:hover {
       text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
     }
 
     @media (max-width: 600px) {
@@ -103,18 +105,18 @@
 <body>
   <div class="container">
     <div class="logo">
-      <img src="arch_icon.png" alt="Portico Logo"/>
+      <img src="arch_icon3.png" alt="Portico Logo"/>
     </div>
     <h1>Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdHdjEQ_lTqyg7-ywE6TkYdoXYcqk7GsC-rJMI-a8INnNv3Fg/formResponse" target="_blank">
-      <input type="email" name="entry.1234567890" placeholder="Enter your email" required />
+    <form action="https://formspree.io/f/movwpaek" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit">Join the Waitlist</button>
     </form>
     <div class="factsheet-link">
       <p><a href="/factsheet.pdf" target="_blank">📄 Learn how Portico is changing the world</a></p>
     </div>
-    <p style="margin-top: 2rem; font-size: 0.9rem; color: #888">© 2025 Portico Financial</p>
+    <div class="footer">© 2025 Portico Financial</div>
   </div>
 </body>
 </html>
