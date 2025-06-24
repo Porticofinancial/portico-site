@@ -8,33 +8,28 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0d2a; /* Midnight navy */
+      background-color: #0A0826; /* Midnight Blue */
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       text-align: center;
+      min-height: 100vh;
       padding: 2rem;
     }
 
     .container {
-      max-width: 520px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 600px;
     }
 
     .logo img {
-      height: 90px;
+      height: 270px; /* 3x original 90px */
       margin-bottom: 2rem;
     }
 
     h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      line-height: 1.2;
     }
 
     p {
@@ -46,23 +41,23 @@
     form {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 1rem;
-      width: 100%;
     }
 
     input[type="email"] {
+      width: 100%;
+      max-width: 400px;
       padding: 1rem;
-      font-size: 1rem;
       border: none;
       border-radius: 6px;
-      width: 100%;
-      box-sizing: border-box;
+      font-size: 1rem;
     }
 
     button {
       background-color: #FFD700; /* Gold */
-      color: #0f0d2a;
-      padding: 1rem;
+      color: #0A0826;
+      padding: 1rem 2rem;
       font-size: 1rem;
       font-weight: bold;
       border: none;
@@ -75,10 +70,19 @@
       background-color: #e6c200;
     }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #666;
+    .factsheet-link {
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+
+    .factsheet-link a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .factsheet-link a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 600px) {
@@ -87,7 +91,7 @@
       }
 
       .logo img {
-        height: 60px;
+        height: 180px;
       }
     }
   </style>
@@ -95,7 +99,7 @@
 <body>
   <div class="container">
     <div class="logo">
-      <img src="arch_icon.png" alt="Portico Logo" />
+      <img src="arch_icon3.png" alt="Portico Logo"/>
     </div>
     <h1>Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
@@ -103,7 +107,10 @@
       <input type="email" name="entry.1234567890" placeholder="Enter your email" required />
       <button type="submit">Join the Waitlist</button>
     </form>
-    <footer>© 2025 Portico Financial</footer>
+    <div class="factsheet-link">
+      <p><a href="/factsheet.pdf" target="_blank">📄 Learn how Portico is changing the world</a></p>
+    </div>
+    <p style="margin-top: 3rem; font-size: 0.9rem; color: #888">© 2025 Portico Financial</p>
   </div>
 </body>
 </html>
