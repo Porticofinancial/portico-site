@@ -63,6 +63,34 @@
       font-size: 0.9rem;
       background: var(--midnight);
     }
+
+    /* Sticky CTA */
+    #ctaSticky {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #11102F;
+      border: 1px solid var(--gold);
+      color: var(--offwhite);
+      padding: 1rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      z-index: 1000;
+      box-shadow: 0 0 12px rgba(255,215,0,0.15);
+    }
+    #ctaSticky a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      #ctaSticky {
+        right: 10px;
+        left: 10px;
+        bottom: 15px;
+        font-size: 0.9rem;
+        padding: 0.75rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -138,6 +166,12 @@
     © 2025 Portico Financial • <a href="index.html" style="color:var(--offwhite); text-decoration:none;">Home</a>
   </footer>
 
+  <!-- Sticky CTA -->
+  <div id="ctaSticky">
+    <strong>Start with just $100</strong><br>
+    <a href="index.html">Secure your spot →</a>
+  </div>
+
   <!-- AOS Scroll Library -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>AOS.init();</script>
@@ -154,42 +188,4 @@
     new Chart(document.getElementById('peChart'), {
       type: 'line',
       data: {
-        labels: years,
-        datasets: [
-          {
-            label: 'Private Equity',
-            data: peData,
-            fill: false,
-            tension: 0.3
-          },
-          {
-            label: 'S&P 500',
-            data: spData,
-            fill: false,
-            tension: 0.3
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            title: { display: true, text: 'Year', color: '#F4F4F4' },
-            ticks: { color: '#F4F4F4' }
-          },
-          y: {
-            title: { display: true, text: 'Cumulative Multiple', color: '#F4F4F4' },
-            ticks: { color: '#F4F4F4' }
-          }
-        },
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: { color: '#F4F4F4' }
-          }
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+       
