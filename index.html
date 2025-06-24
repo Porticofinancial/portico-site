@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portico</title>
   <style>
     body {
@@ -18,25 +18,23 @@
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0;
       margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .brand img {
-      height: 130px;
-      width: auto;
-      margin-right: 8px;
-      padding: 0;
     }
 
     .brand h1 {
       font-size: 2.8rem;
       margin: 0;
+    }
+
+    .brand img {
+      height: 130px;
+      width: auto;
+      margin: 0;
       padding: 0;
-      line-height: 1;
     }
 
     .tagline {
@@ -110,8 +108,7 @@
       }
 
       .brand img {
-        height: 80px;
-        margin-right: 6px;
+        height: 72px;
       }
     }
   </style>
@@ -120,8 +117,8 @@
 
   <header>
     <div class="brand">
-      <img src="arch_icon3.png" alt="Arch Logo" />
       <h1>Portico</h1>
+      <img src="arch_icon3.png" alt="Portico Arch Logo" />
     </div>
     <div class="tagline">Private Equity, Opened.</div>
     <div class="subtagline">Everyday investors now have a seat at the table.</div>
@@ -145,7 +142,7 @@
 
   <footer>
     © 2025 Portico Financial. All rights reserved.
-    <br/>
+    <br />
     <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
   </footer>
 
