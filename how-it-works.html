@@ -62,7 +62,7 @@
 <body>
   <header>
     <a href="index.html" class="home">← Home</a>
-    <img src="arch_icon3.png" alt="Portico Logo" class="logo" />
+    <img src="arch_icon.png" alt="Portico Logo" class="logo" />
   </header>
 
   <main>
@@ -72,58 +72,50 @@
     <div class="section">
       <h2>1. Why Private Equity?</h2>
       <p>
-        Private equity (PE) means investing in privately held companies—or buyouts of public firms—to drive operational improvements and unlock outsized returns over the long term.
+        Unlock institutional-grade returns that consistently outpace public markets:
       </p>
       <ul>
-        <li><strong>Top-quartile net IRR:</strong> 20–25%+ over the past decade</li>
-        <li><strong>Average global PE IRR:</strong> ~14% vs. ~10% annualized S&P 500 returns</li>
-        <li><strong>2000–2020 cumulative return:</strong> 4.2× for PE vs. 2.5× for the S&P 500</li>
+        <li><strong>Top-quartile net IRR:</strong> 20–25%+ fueling compound growth</li>
+        <li><strong>Average global IRR:</strong> ~14% vs. ~10% annualized S&P 500</li>
+        <li><strong>2000–2020 cumulative:</strong> 4.2× for PE vs. 2.5× on the S&P</li>
       </ul>
       <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
     </div>
 
-    <!-- 2. Historically Off-Limits -->
+    <!-- 2. Wall Street’s Best-Kept Secret -->
     <div class="section">
-      <h2>2. Historically Off-Limits</h2>
-      <p>
-        Despite those stellar returns, PE has been gated behind:
-      </p>
+      <h2>2. Wall Street’s Best-Kept Secret</h2>
+      <p>Until now, those gains were reserved for the ultra-wealthy:</p>
       <ul>
-        <li><strong>High minimums:</strong> Often $250K+ per fund</li>
-        <li><strong>Accredited-only access:</strong> Income & net-worth tests</li>
-        <li><strong>Long lock-ups:</strong> 7–10 year capital commitments</li>
-        <li><strong>Complex tax reporting:</strong> K-1s, opaque valuations</li>
+        <li><strong>$250K+ minimums</strong> shut out everyday investors</li>
+        <li><strong>Accredited-only rules</strong> created an exclusive club</li>
+        <li><strong>7–10 year lock-ups</strong> locked away capital for decades</li>
+        <li><strong>Opaque structures</strong> hid true performance</li>
       </ul>
-      <p>
-        Everyday investors simply haven’t had a seat at the table—until now.
-      </p>
+      <p>Portico is here to tear down these walls.</p>
     </div>
 
-    <!-- 3. Portico’s Solution -->
+    <!-- 3. Portico’s Game-Changer -->
     <div class="section">
-      <h2>3. Portico’s Solution</h2>
-      <p>
-        Portico breaks down every barrier so you can tap into PE’s power:
-      </p>
+      <h2>3. Portico’s Game-Changer</h2>
+      <p>Dive into private equity with zero gatekeepers:</p>
       <ul>
-        <li><strong>$100 minimums:</strong> Make real allocations on any budget</li>
-        <li><strong>No accreditation needed:</strong> Open to all U.S. residents</li>
-        <li><strong>Quarterly liquidity @ 95% NAV:</strong> No decade-long lock-ups</li>
-        <li><strong>Reg A+ compliance:</strong> Fully SEC-registered offering</li>
-        <li><strong>AI-powered curation:</strong> We match you with top-performing funds</li>
+        <li><strong>$100 minimums</strong> – start small, think big</li>
+        <li><strong>No accreditation</strong> – open to every U.S. investor</li>
+        <li><strong>Quarterly liquidity</strong> – access at 95% NAV</li>
+        <li><strong>Reg A+ registration</strong> – full transparency & compliance</li>
+        <li><strong>AI-curated funds</strong> – only the top performers</li>
       </ul>
     </div>
 
-    <!-- 4. Opening Access -->
+    <!-- 4. Instant, Seamless Access -->
     <div class="section">
-      <h2>4. Opening Access</h2>
-      <p>
-        Portico’s platform tears down the old barriers so anyone can invest in private equity:
-      </p>
+      <h2>4. Instant, Seamless Access</h2>
+      <p>Our platform transforms the PE experience:</p>
       <ul>
-        <li>Instant, AI-powered onboarding—no manual paperwork</li>
-        <li>$100 minimums and zero accreditation hurdles</li>
-        <li>Transparent dashboards with real-time metrics & quarterly liquidity</li>
+        <li><strong>One-click onboarding</strong> – from signup to allocation in minutes</li>
+        <li><strong>Real-time dashboards</strong> – track performance, fees, liquidity</li>
+        <li><strong>Automated compliance</strong> – we handle all paperwork</li>
       </ul>
     </div>
 
@@ -131,18 +123,18 @@
     <div class="section">
       <h2>5. Why Now?</h2>
       <ul>
-        <li>Reg A+ opens retail access</li>
-        <li>Market volatility drives demand for alternatives</li>
-        <li>Technology lowers barriers like never before</li>
+        <li><strong>Reg A+ democratization</strong> – retail access unlocked</li>
+        <li><strong>Market volatility</strong> – demand for differentiated returns</li>
+        <li><strong>Tech breakthroughs</strong> – AI & cloud power at your fingertips</li>
       </ul>
     </div>
 
-    <!-- 6. Join the Movement -->
+    <!-- 6. Ready to Join the Revolution? -->
     <div class="section">
-      <h2>6. Join the Movement</h2>
+      <h2>6. Ready to Join the Revolution?</h2>
       <p>
-        Ready to unlock private equity?  
-        <a href="index.html" style="color:var(--gold); text-decoration:underline;">Back to Waitlist →</a>
+        Step into the future of investing.  
+        <a href="index.html" style="color:var(--gold); text-decoration:underline;">Secure your spot →</a>
       </p>
     </div>
   </main>
@@ -157,7 +149,6 @@
     const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
     const rPe = Math.pow(4.2, 1/20) - 1;
     const rSp = Math.pow(2.5, 1/20) - 1;
-
     const peData = years.map(y => Math.pow(1 + rPe, y - 2000).toFixed(2));
     const spData = years.map(y => Math.pow(1 + rSp, y - 2000).toFixed(2));
 
@@ -183,11 +174,20 @@
       options: {
         responsive: true,
         scales: {
-          x: { title: { display: true, text: 'Year' } },
-          y: { title: { display: true, text: 'Cumulative Multiple' } }
+          x: {
+            title: { display: true, text: 'Year', color: '#F4F4F4' },
+            ticks: { color: '#F4F4F4' }
+          },
+          y: {
+            title: { display: true, text: 'Cumulative Multiple', color: '#F4F4F4' },
+            ticks: { color: '#F4F4F4' }
+          }
         },
         plugins: {
-          legend: { position: 'top', labels: { color: 'white' } }
+          legend: {
+            position: 'top',
+            labels: { color: '#F4F4F4' }
+          }
         }
       }
     });
