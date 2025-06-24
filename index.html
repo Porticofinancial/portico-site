@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0A0826;
+      background-color: #0A0826; /* Midnight Blue */
       color: white;
       display: flex;
       align-items: center;
@@ -75,13 +75,20 @@
       background-color: #e6c200;
     }
 
-    .factsheet-link a {
+    .factsheet-link,
+    .how-it-works-link {
+      font-size: 1rem;
+    }
+
+    .factsheet-link a,
+    .how-it-works-link a {
       color: #FFD700;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .factsheet-link a:hover {
+    .factsheet-link a:hover,
+    .how-it-works-link a:hover {
       text-decoration: underline;
     }
 
@@ -89,12 +96,6 @@
       margin-top: 2rem;
       font-size: 0.9rem;
       color: #888;
-    }
-
-    .message {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #FFD700;
     }
 
     @media (max-width: 600px) {
@@ -119,7 +120,9 @@
       <input type="email" name="email" placeholder="Enter your email" required />
       <button type="submit">Join the Waitlist</button>
     </form>
-    <div class="message" id="form-message" aria-live="polite"></div>
+    <div class="how-it-works-link">
+      <p><a href="how-it-works.html">Learn how it works →</a></p>
+    </div>
     <div class="factsheet-link">
       <p><a href="/factsheet.pdf" target="_blank">📄 Learn how Portico is changing the world</a></p>
     </div>
@@ -137,18 +140,16 @@
         const response = await fetch('https://formspree.io/f/movwpaek', {
           method: 'POST',
           body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+          headers: { 'Accept': 'application/json' }
         });
         if (response.ok) {
-          messageDiv.textContent = 'Thank you! You are on the waitlist.';
+          alert('Thank you! You are on the waitlist.');
           form.reset();
         } else {
-          messageDiv.textContent = 'Oops! Something went wrong. Please try again.';
+          alert('Oops! Something went wrong.');
         }
       } catch (error) {
-        messageDiv.textContent = 'Network error. Please check your connection.';
+        alert('Network error. Please try again.');
       }
     });
   </script>
