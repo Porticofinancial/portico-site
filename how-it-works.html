@@ -52,9 +52,7 @@
     ul { list-style: none; padding: 0; }
     ul li::before { content: "•"; color: var(--gold); display: inline-block; width: 1em; }
 
-    .section {
-      margin-bottom: 2.5rem;
-    }
+    .section { margin-bottom: 2.5rem; }
 
     .split {
       display: flex;
@@ -124,7 +122,6 @@
         <li><strong>4.2× growth</strong> vs. 2.5× on the S&P (2000–2020)</li>
       </ul>
       <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
-
       <p style="color:var(--light); font-size:1rem; font-style:italic; margin-top:1.5rem;">
         “Over the last two decades, private equity has outpaced the S&P 500 by more than 1.5×.”<br>
         <span style="color: var(--gold); font-weight: bold;">Portico opens that advantage to you.</span>
@@ -196,4 +193,5 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
-    const rPe = Math.pow(
+    const rPe = Math.pow(4.2, 1/20) - 1;
+    const rSp = Math.pow(2.5, 1/20) - 1
