@@ -2,107 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portico – Private Equity, Opened</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portico</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #1a1446;
-      color: #fff;
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #181046;
+      color: white;
     }
 
     header {
-      padding: 80px 20px 60px;
+      text-align: center;
+      padding: 4rem 1rem 2rem 1rem;
     }
 
-    .brand-header {
+    .brand {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
-    .arch-logo {
+    .brand img {
       height: 48px;
       width: auto;
     }
 
-    .brand-text {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: white;
+    .brand h1 {
+      font-size: 2.8rem;
       margin: 0;
     }
 
-    .subheading {
-      font-size: 1.25rem;
+    .tagline {
+      font-size: 1.4rem;
       margin-bottom: 0.5rem;
     }
 
-    .tagline {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+    .subtagline {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #ddd;
     }
 
     .cta-button {
-      display: inline-block;
-      padding: 14px 24px;
-      background-color: #ffd600;
-      color: #1a1446;
-      font-weight: 600;
-      text-decoration: none;
+      background-color: #FFD700;
+      color: black;
+      padding: 1rem 2rem;
+      border: none;
       border-radius: 8px;
       font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .features {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
-      padding: 40px 20px;
-      background-color: #f9f9f9;
-      color: #000;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background-color: #f8f8f8;
+      color: #111;
     }
 
     .feature-card {
       background: white;
-      padding: 24px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 2rem;
       max-width: 300px;
-      flex: 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
     }
 
     footer {
-      background: #f9f9f9;
-      color: #333;
-      padding: 30px 20px;
+      text-align: center;
       font-size: 0.9rem;
+      color: #ccc;
+      padding: 2rem;
+      background-color: #fff;
+      color: #333;
     }
 
     footer a {
-      color: #333;
+      margin: 0 10px;
       text-decoration: none;
-      margin: 0 8px;
+      color: #333;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .brand h1 {
+        font-size: 2rem;
+      }
+
+      .brand img {
+        height: 36px;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="brand-header">
-      <img src="arch-logo.png" alt="Portico Arch Logo" class="arch-logo" />
-      <h1 class="brand-text">Portico</h1>
+    <div class="brand">
+      <img src="arch_icon.png" alt="Portico Arch Logo" />
+      <h1>Portico</h1>
     </div>
-    <p class="subheading">Private Equity, Opened.</p>
-    <p class="tagline">Everyday investors now have a seat at the table.</p>
-    <a href="https://forms.gle/X9qRdcU8NdDRsE2c9" class="cta-button" target="_blank">Join the Waitlist</a>
+    <div class="tagline">Private Equity, Opened.</div>
+    <div class="subtagline">Everyday investors now have a seat at the table.</div>
+    <button class="cta-button">Join the Waitlist</button>
   </header>
 
   <section class="features">
@@ -121,12 +139,10 @@
   </section>
 
   <footer>
-    <p>© 2025 Portico Financial. All rights reserved.</p>
-    <p>
-      <a href="#">Privacy</a> |
-      <a href="#">Terms</a> |
-      <a href="#">Contact</a>
-    </p>
+    © 2025 Portico Financial. All rights reserved.
+    <br/>
+    <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
   </footer>
+
 </body>
 </html>
