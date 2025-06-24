@@ -52,4 +52,144 @@
     ul { list-style: none; padding: 0; }
     ul li::before { content: "•"; color: var(--gold); display: inline-block; width: 1em; }
 
-    .section
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--light);
+      font-size: 0.9rem;
+      background: var(--midnight);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="home">← Home</a>
+    <img src="arch_icon.png" alt="Portico Logo" class="logo" />
+  </header>
+
+  <main>
+    <h1 data-aos="fade-up">How It Works</h1>
+
+    <div class="section" data-aos="fade-up">
+      <h2>Why Private Equity?</h2>
+      <p>
+        Private equity has quietly outperformed public markets for decades—and now, it’s no longer reserved for institutions.
+        With strong compounding, less volatility, and access to real operating companies, it’s the asset class of the future.
+      </p>
+      <ul>
+        <li><strong>20–25% net IRR</strong>—institutional returns fueling compounding</li>
+        <li><strong>Avg. IRR 14%</strong> vs. ~10% on the S&P 500</li>
+        <li><strong>4.2× growth</strong> vs. 2.5× on the S&P (2000–2020)</li>
+      </ul>
+      <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
+
+      <div style="display: flex; flex-wrap: wrap; margin-top: 1.5rem; gap: 1rem;">
+        <div style="flex: 1 1 55%;">
+          <p style="color:var(--light); font-size:1rem; font-style:italic;">
+            “Over the last two decades, private equity has outpaced the S&P 500 by more than 1.5×.”<br>
+            <span style="color: var(--gold); font-weight: bold;">Portico opens that advantage to you.</span>
+          </p>
+        </div>
+        <div style="flex: 1 1 35%; background: #11102F; border: 1px solid var(--gold); padding: 1rem; box-shadow: 0 0 10px rgba(255,215,0,0.1); border-radius: 4px;">
+          <h3 style="color: var(--gold); margin: 0 0 0.5rem;">Want in?</h3>
+          <p style="margin: 0 0 0.5rem; color: var(--offwhite);">Start with just <strong>$100</strong></p>
+          <a href="index.html" style="color: var(--gold); text-decoration: underline;">Secure your spot →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" data-aos="fade-up" data-aos-delay="100">
+      <h2>Wall Street’s Best-Kept Secret</h2>
+      <p>Until now, these returns were out of reach:</p>
+      <ul>
+        <li><strong>$250K+ minimums</strong> sidelining most investors</li>
+        <li><strong>Backroom accreditation</strong> keeping doors locked</li>
+        <li><strong>7–10 year lock-ups</strong> chaining up capital</li>
+        <li><strong>Opaque structures</strong> hiding the real story</li>
+      </ul>
+      <p>Portico smashes every barrier.</p>
+    </div>
+
+    <div class="section" data-aos="fade-up" data-aos-delay="200">
+      <h2>The Portico Advantage</h2>
+      <p>Experience private equity without the gatekeepers:</p>
+      <ul>
+        <li><strong>$100 minimums</strong>—start small, dream big</li>
+        <li><strong>No gatekeepers</strong>—everyone’s invited</li>
+        <li><strong>Quarterly liquidity</strong>—exit at 95% NAV</li>
+        <li><strong>Curated top-performing funds</strong>—handpicked for proven potential</li>
+      </ul>
+    </div>
+
+    <div class="section" data-aos="fade-up" data-aos-delay="300">
+      <h2>Join the Revolution</h2>
+      <p>
+        Transform your portfolio with powerhouse returns.  
+        <a href="index.html" style="color:var(--gold); text-decoration:underline;">Secure your spot →</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Portico Financial • <a href="index.html" style="color:var(--offwhite); text-decoration:none;">Home</a>
+  </footer>
+
+  <!-- AOS Scroll Library -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
+    const rPe = Math.pow(4.2, 1/20) - 1;
+    const rSp = Math.pow(2.5, 1/20) - 1;
+    const peData = years.map(y => Math.pow(1 + rPe, y - 2000).toFixed(2));
+    const spData = years.map(y => Math.pow(1 + rSp, y - 2000).toFixed(2));
+
+    new Chart(document.getElementById('peChart'), {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Private Equity',
+            data: peData,
+            fill: false,
+            tension: 0.3
+          },
+          {
+            label: 'S&P 500',
+            data: spData,
+            fill: false,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: { display: true, text: 'Year', color: '#F4F4F4' },
+            ticks: { color: '#F4F4F4' }
+          },
+          y: {
+            title: { display: true, text: 'Cumulative Multiple', color: '#F4F4F4' },
+            ticks: { color: '#F4F4F4' }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { color: '#F4F4F4' }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
