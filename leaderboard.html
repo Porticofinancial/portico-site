@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Portico Leaderboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --gold: #E6B200; }
+    body {
+      margin:0; font-family:'Segoe UI',sans-serif; background:#0A0826; color:#fff;
+      display:flex;flex-direction:column;align-items:center;padding:2rem;
+    }
+    h1 { font-family:'Satoshi';font-weight:700;font-size:2.5rem;color:var(--gold);}
+    table {
+      width:100%; max-width:600px; border-collapse:collapse; margin-top:1.5rem;
+    }
+    th,td {
+      padding:.75rem; border-bottom:1px solid #333; text-align:left;
+    }
+    th { color:var(--gold); }
+    td { color:#ccc; }
+  </style>
+</head>
+<body>
+  <h1>Top Referrers</h1>
+  <table id="leaderboard">
+    <thead>
+      <tr><th>Rank</th><th>Code</th><th>Referrals</th></tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="3">Loading…</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const API = 'https://script.google.com/macros/s/AKfycbxhYnsltxVSTJCWAzwPYRHXADx3O2_dpLTeU004MdOwwIfBeZOlEwRRRk3rJ4g3wtJbhA/exec';
+
+    async function loadLeaderboard() {
+      // Fetch entire sheet
+      const params = new URLSearchParams({ action: 'leaderboard' });
+      const res = await fetch(`${API}?${params}`);
+      const data = await res.json();
+      if (!Array.isArray(data)) return;
+      const tbody = document.querySelector('#leaderboard tbody');
+      tbody.innerHTML = '';
+      data.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>#${i+1}</td><td>${row.code}</td><td>${row.count}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>
