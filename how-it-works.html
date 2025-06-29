@@ -57,18 +57,28 @@
     }
     h1 { font-size: 2.5rem; }
     h2 { font-size: 1.5rem; }
-    p, li { color: var(--offwhite); text-align: center; }
+    p { color: var(--offwhite); text-align: center; }
     ul {
       list-style: none;
-      padding: 0;
+      padding-left: 1.4rem;
+      margin: 1.2rem auto;
+      max-width: 600px;
+    }
+    ul li {
+      position: relative;
+      text-align: left;
+      padding-left: 1rem;
+      margin-bottom: 0.6rem;
+      color: var(--offwhite);
     }
     ul li::before {
       content: "•";
+      position: absolute;
+      left: 0;
       color: var(--gold);
-      display: inline-block;
-      width: 1em;
+      font-size: 1.2rem;
+      line-height: 1;
     }
-    ul li { text-align: center; }
 
     .section { margin-bottom: 2.5rem; }
 
@@ -121,7 +131,7 @@
       <h2>Why Private Equity?</h2>
       <p>Private equity has quietly outperformed public markets for decades—and now, it’s no longer reserved for institutions.</p>
       <ul>
-        <li><strong>20–25% net IRR</strong>—institutional returns fueling compounding</li>
+        <li><strong>20–25% net IRR</strong> — institutional returns fueling compounding</li>
         <li><strong>Avg. IRR 14%</strong> vs. ~10% on the S&P 500</li>
         <li><strong>4.2× growth</strong> vs. 2.5× on the S&P (2000–2020)</li>
       </ul>
@@ -148,16 +158,17 @@
       <h2>The Portico Advantage</h2>
       <p>Experience private equity without the gatekeepers:</p>
       <ul>
-        <li><strong>$100 minimums</strong>—start small, dream big</li>
-        <li><strong>No gatekeepers</strong>—everyone’s invited</li>
-        <li><strong>Quarterly liquidity</strong>—exit at 95% NAV</li>
-        <li><strong>Curated top-performing funds</strong>—handpicked for proven potential</li>
+        <li><strong>$100 minimums</strong> — start small, dream big</li>
+        <li><strong>No gatekeepers</strong> — everyone’s invited</li>
+        <li><strong>Quarterly liquidity</strong> — exit at 95% NAV</li>
+        <li><strong>Curated top-performing funds</strong> — handpicked for proven potential</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Join the Revolution</h2>
-      <p>Transform your portfolio with powerhouse returns.  
+      <p>
+        Transform your portfolio with powerhouse returns.<br>
         <a href="index.html" style="color:var(--gold); text-decoration:underline;">Secure your spot →</a>
       </p>
     </div>
@@ -188,7 +199,7 @@
           {
             label: 'Private Equity',
             data: peData,
-            borderColor: '#FFD700',
+            borderColor: '#E6B200',
             fill: false,
             tension: 0.3
           },
@@ -215,11 +226,3 @@
         },
         plugins: {
           legend: {
-            position: 'top',
-            labels: { color: '#F4F4F4' }
-          }
-        }
-      }
-    });
-  </script>
-</
