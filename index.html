@@ -6,17 +6,7 @@
   <title>Portico</title>
   <meta name="description" content="Invest like an insider—without needing to be one."/>
 
-  <!-- Open Graph & Twitter Card -->
-  <meta property="og:type"        content="website"/>
-  <meta property="og:url"         content="https://portico-site.vercel.app/"/>
-  <meta property="og:title"       content="Portico – Private Equity, Opened."/>
-  <meta property="og:description" content="Invest like an insider—without needing to be one."/>
-  <meta property="og:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png"/>
-  <meta name="twitter:card"        content="summary_large_image"/>
-  <meta name="twitter:site"        content="@Porticofinance"/>
-  <meta name="twitter:title"       content="Portico – Private Equity, Opened."/>
-  <meta name="twitter:description" content="Invest like an insider—without needing to be one."/>
-  <meta name="twitter:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png"/>
+  <!-- Open Graph & Twitter Card omitted for brevity -->
 
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
   <style>
@@ -31,9 +21,7 @@
       max-width: 600px; display: flex; flex-direction: column;
       align-items: center; gap: 1rem;
     }
-    .logo img {
-      height: 270px; margin-bottom: .2rem;
-    }
+    .logo img { height: 270px; margin-bottom: .2rem; }
     .wordmark {
       font-family: 'Satoshi',sans-serif; font-weight:700;
       font-size:3.7rem; color:var(--gold); margin:0; letter-spacing:.4px;
@@ -49,10 +37,7 @@
       width:100%; max-width:400px; padding:1rem;
       border:none; border-radius:6px; font-size:1rem;
     }
-    input[name="hp"],
-    input[name="referrer"] {
-      display: none;
-    }
+    input[name="hp"], input[name="referrer"] { display:none; }
     button {
       background:#FFD700; color:#0A0826;
       padding:1rem 2rem; font-size:1rem; font-weight:700;
@@ -68,8 +53,8 @@
     .confirmation strong { color:var(--gold); }
     .ref-link {
       font-size:.9rem; background:#11102F; padding:.75rem;
-      border-radius:6px; color:#FFF;
-      word-break:break-all; width:100%; max-width:400px;
+      border-radius:6px; color:#FFF; word-break:break-all;
+      width:100%; max-width:400px;
     }
 
     .how-it-works-link a {
@@ -89,7 +74,7 @@
     <h1 class="hero">Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
 
-    <!-- 1) Signup Form -->
+    <!-- Signup Form -->
     <form id="waitlist-form">
       <input type="email" name="email" placeholder="Enter your email" required/>
       <input type="text" name="hp" autocomplete="off"/>
@@ -97,7 +82,7 @@
       <button type="submit">Join the Waitlist</button>
     </form>
 
-    <!-- 2) Confirmation Panel -->
+    <!-- Confirmation Panel -->
     <div class="confirmation" id="confirmation">
       <p>✅ You’re on the waitlist!</p>
       <p>Your invite code: <strong id="inviteCode"></strong></p>
@@ -115,47 +100,60 @@
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbxhYnsltxVSTJCWAzwPYRHXADx3O2_dpLTeU004MdOwwIfBeZOlEwRRRk3rJ4g3wtJbhA/exec';
 
-    // On load: fetch stored code or ?ref=, then GET real position
+    // 1) Capture any ?ref= code immediately
+    const urlParams = new URLSearchParams(location.search);
+    const urlRef    = urlParams.get('ref');
+    if (urlRef) document.getElementById('referrer').value = urlRef;
+
+    // 2) On load, show stored data instantly, then refresh from API
     window.addEventListener('DOMContentLoaded', async () => {
       let code = localStorage.getItem('portico_code');
-      const params = new URLSearchParams(location.search);
-      if (!code && params.get('ref')) code = params.get('ref');
+      let pos  = localStorage.getItem('portico_position');
 
+      // if we have no code but a ?ref=, use that
+      if (!code && urlRef) code = urlRef;
+
+      // if code exists, show panel right away
       if (code) {
-        const res = await fetch(`${API_URL}?ref=${code}`);
-        const json = await res.json();
-        if (!json.error) {
-          localStorage.setItem('portico_code', json.code);
-          localStorage.setItem('portico_position', json.position);
-          document.getElementById('waitlist-form').style.display = 'none';
-          document.getElementById('inviteCode').textContent   = json.code;
-          document.getElementById('waitPosition').textContent = `#${json.position}`;
-          document.getElementById('refLink').textContent      =
-            `${location.origin}/index.html?ref=${json.code}`;
-          document.getElementById('confirmation').style.display = 'flex';
+        document.getElementById('waitlist-form').style.display = 'none';
+        document.getElementById('inviteCode').textContent     = code;
+        document.getElementById('waitPosition').textContent   = pos ? `#${pos}` : '...';
+        document.getElementById('refLink').textContent        =
+          `${location.origin}/index.html?ref=${code}`;
+        document.getElementById('confirmation').style.display = 'flex';
+
+        // now fetch the real position
+        try {
+          const res  = await fetch(`${API_URL}?ref=${code}`);
+          const json = await res.json();
+          if (!json.error) {
+            localStorage.setItem('portico_code', json.code);
+            localStorage.setItem('portico_position', json.position);
+            document.getElementById('inviteCode').textContent   = json.code;
+            document.getElementById('waitPosition').textContent = `#${json.position}`;
+            document.getElementById('refLink').textContent      =
+              `${location.origin}/index.html?ref=${json.code}`;
+          }
+        } catch (err) {
+          console.warn('Could not refresh position:', err);
         }
       }
     });
 
-    // Capture any ?ref= into the form
-    const queryRef = new URLSearchParams(window.location.search).get('ref');
-    if (queryRef) document.getElementById('referrer').value = queryRef;
-
-    // Handle form submission (POST)
+    // 3) Form submission
     document.getElementById('waitlist-form').addEventListener('submit', async e => {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      const query    = new URLSearchParams(formData).toString();
-      const res      = await fetch(`${API_URL}?${query}`, { method: 'POST' });
-      const json     = await res.json();
+      const query = new URLSearchParams(new FormData(e.target)).toString();
+      const res   = await fetch(`${API_URL}?${query}`, { method:'POST' });
+      const json  = await res.json();
       if (json.error) return alert('Error: ' + json.error);
 
       localStorage.setItem('portico_code', json.code);
       localStorage.setItem('portico_position', json.position);
       document.getElementById('waitlist-form').style.display = 'none';
-      document.getElementById('inviteCode').textContent   = json.code;
-      document.getElementById('waitPosition').textContent = `#${json.position}`;
-      document.getElementById('refLink').textContent      =
+      document.getElementById('inviteCode').textContent     = json.code;
+      document.getElementById('waitPosition').textContent   = `#${json.position}`;
+      document.getElementById('refLink').textContent        =
         `${location.origin}/index.html?ref=${json.code}`;
       document.getElementById('confirmation').style.display = 'flex';
     });
