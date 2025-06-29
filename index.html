@@ -5,52 +5,122 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Portico</title>
   <meta name="description" content="Invest like an insider—without needing to be one."/>
-  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap"
+        rel="stylesheet"/>
   <style>
     :root { --gold: #E6B200; }
-    body { margin:0; font-family:'Segoe UI',sans-serif; background:#0A0826; color:#fff;
-      display:flex; align-items:center; justify-content:center; text-align:center;
-      min-height:100vh; padding:2rem;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0A0826;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 2rem;
     }
-    .container { max-width:600px; display:flex; flex-direction:column;
-      align-items:center; gap:1rem;
+    .container {
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
     }
-    .logo img { height:270px; margin-bottom:.2rem; }
-    .wordmark { font-family:'Satoshi',sans-serif; font-weight:700;
-      font-size:3.7rem; color:var(--gold); margin:0; letter-spacing:.4px;
+    .logo img {
+      height: 270px;
+      margin-bottom: 0.2rem;
     }
-    h1.hero { font-size:2.6rem; margin:.5rem 0 1rem; }
-    p { font-size:1.2rem; color:#ccc; margin-bottom:1.5rem; }
+    .wordmark {
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      font-size: 3.7rem;
+      color: var(--gold);
+      margin: 0;
+      letter-spacing: 0.4px;
+    }
+    h1.hero {
+      font-size: 2.6rem;
+      margin: 0.5rem 0 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #cccccc;
+      margin-bottom: 1.5rem;
+    }
 
-    form { display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
     input[type="email"] {
-      width:100%; max-width:400px; padding:1rem; border:none;
-      border-radius:6px; font-size:1rem;
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
     }
-    input[name="hp"], input[name="referrer"] { display:none; }
+    /* Honeypot + referrer hidden */
+    input[name="hp"],
+    input[name="referrer"] {
+      display: none;
+    }
     button {
-      background:#FFD700; color:#0A0826; padding:1rem 2rem;
-      font-size:1rem; font-weight:700; border:none; border-radius:6px;
-      cursor:pointer; transition:background-color .2s;
+      background: #FFD700;
+      color: #0A0826;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
     }
-    button:hover { background:#e6c200; }
+    button:hover {
+      background: #e6c200;
+    }
 
     .confirmation {
-      display:none; flex-direction:column; align-items:center; gap:1rem; color:#ccc;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: #cccccc;
     }
-    .confirmation strong { color:var(--gold); }
+    .confirmation strong {
+      color: var(--gold);
+    }
     .ref-link {
-      font-size:.9rem; background:#11102F; padding:.75rem; border-radius:6px;
-      color:#FFF; word-break:break-all; width:100%; max-width:400px;
+      font-size: 0.9rem;
+      background: #11102F;
+      padding: 0.75rem;
+      border-radius: 6px;
+      color: #FFF;
+      word-break: break-all;
+      width: 100%;
+      max-width: 400px;
     }
 
-    .already { color:#FFD700; font-weight:bold; }
-
-    .links a {
-      display:block; margin-top:1rem; color:var(--gold);
-      text-decoration:none; font-weight:700;
+    .already {
+      color: var(--gold);
+      font-weight: bold;
     }
-    .links a:hover { text-decoration:underline; }
+
+    .how-it-works-link a {
+      display: block;
+      margin-top: 1rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .how-it-works-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -63,7 +133,7 @@
     <h1 class="hero">Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
 
-    <!-- Signup Form -->
+    <!-- WAITLIST FORM -->
     <form id="waitlist-form">
       <input type="email" name="email" placeholder="Enter your email" required/>
       <input type="text" name="hp" autocomplete="off"/>
@@ -71,7 +141,7 @@
       <button type="submit">Join the Waitlist</button>
     </form>
 
-    <!-- Confirmation Panel -->
+    <!-- CONFIRMATION PANEL -->
     <div class="confirmation" id="confirmation">
       <p id="statusMsg">✅ You’re on the waitlist!</p>
       <p>Your invite code: <strong id="inviteCode"></strong></p>
@@ -80,57 +150,59 @@
       <p>Share this link to move up the queue 🔥</p>
     </div>
 
-    <!-- Links -->
-    <div class="links">
+    <div class="how-it-works-link">
       <a href="how-it-works.html">Learn how it works →</a>
-      <a href="leaderboard.html">See the top referrers →</a>
     </div>
   </div>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbw5zUIGIgOVb8SuwbeNBCN7kSFpA4j3VbMvriMWwenLAYFdH1bNr1fZsMwTmD0vmi_LnA/exec';
+    const API_URL = 
+      'https://script.google.com/macros/s/AKfycbw5zUIGIgOVb8SuwbeNBCN7kSFpA4j3VbMvriMWwenLAYFdH1bNr1fZsMwTmD0vmi_LnA/exec';
 
-    // Capture ?ref= on load
-    const params = new URLSearchParams(location.search),
-          urlRef = params.get('ref');
-    if (urlRef) document.getElementById('referrer').value = urlRef;
+    // Grab ?ref= if present
+    const params = new URLSearchParams(location.search);
+    const urlRef = params.get('ref');
+    if (urlRef) {
+      document.getElementById('referrer').value = urlRef;
+    }
 
-    // Handle signup (new or duplicate)
+    // Handle form submission (new or duplicate)
     async function handleSignup(e) {
       e.preventDefault();
-      const qs = new URLSearchParams(new FormData(e.target)).toString();
-      const res = await fetch(`${API_URL}?${qs}`, { method:'POST' });
+      const formData = new FormData(e.target);
+      const qs = new URLSearchParams(formData).toString();
+      const res = await fetch(`${API_URL}?${qs}`, { method: 'POST' });
       const j   = await res.json();
       if (j.error) return alert(j.error);
 
-      // Swap UI
+      // Hide form, show confirmation
       document.getElementById('waitlist-form').style.display = 'none';
-      document.getElementById('inv iteCode').textContent     = j.code;
+      document.getElementById('inviteCode').textContent     = j.code;
       document.getElementById('waitPosition').textContent   = `#${j.position}`;
       document.getElementById('refLink').textContent        =
         `${location.origin}/index.html?ref=${j.code}`;
       document.getElementById('confirmation').style.display = 'flex';
 
-      // Duplicate message?
+      // If they were already signed up:
       if (j.existing) {
         document.getElementById('statusMsg').innerHTML =
           '<span class="already">You’re already on the waitlist!</span>';
       }
 
-      // Cache
+      // Cache for reloads
       localStorage.setItem('portico_code', j.code);
       localStorage.setItem('portico_position', j.position);
     }
-
     document.getElementById('waitlist-form')
       .addEventListener('submit', handleSignup);
 
-    // On load: show cached or ref, then refresh position
+    // On load: show cached or ref code immediately, then refresh true position
     window.addEventListener('DOMContentLoaded', async () => {
       let code = localStorage.getItem('portico_code') || urlRef;
       if (!code) return;
 
       const pos = localStorage.getItem('portico_position');
+      // Show cached data
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('inviteCode').textContent     = code;
       document.getElementById('waitPosition').textContent   = pos ? `#${pos}` : '...';
@@ -138,7 +210,7 @@
         `${location.origin}/index.html?ref=${code}`;
       document.getElementById('confirmation').style.display = 'flex';
 
-      // Refresh
+      // Fetch the real position
       try {
         const res = await fetch(`${API_URL}?ref=${code}`);
         const j   = await res.json();
@@ -146,7 +218,9 @@
           document.getElementById('waitPosition').textContent = `#${j.position}`;
           localStorage.setItem('portico_position', j.position);
         }
-      } catch {}
+      } catch (err) {
+        console.warn('Position refresh failed', err);
+      }
     });
   </script>
 </body>
