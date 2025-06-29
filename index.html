@@ -1,122 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Portico</title>
-  <meta name="description" content="Invest like an insider—without needing to be one." />
+  <meta name="description" content="Invest like an insider—without needing to be one."/>
 
   <!-- Open Graph & Twitter Card -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://portico-site.vercel.app/" />
-  <meta property="og:title"       content="Portico – Private Equity, Opened." />
-  <meta property="og:description" content="Invest like an insider—without needing to be one." />
-  <meta property="og:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png" />
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:site"        content="@Porticofinance" />
-  <meta name="twitter:title"       content="Portico – Private Equity, Opened." />
-  <meta name="twitter:description" content="Invest like an insider—without needing to be one." />
-  <meta name="twitter:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png" />
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://portico-site.vercel.app/"/>
+  <meta property="og:title"       content="Portico – Private Equity, Opened."/>
+  <meta property="og:description" content="Invest like an insider—without needing to be one."/>
+  <meta property="og:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png"/>
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:site"        content="@Porticofinance"/>
+  <meta name="twitter:title"       content="Portico – Private Equity, Opened."/>
+  <meta name="twitter:description" content="Invest like an insider—without needing to be one."/>
+  <meta name="twitter:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png"/>
 
-  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
   <style>
     :root { --gold: #E6B200; }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0A0826;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 100vh;
-      padding: 2rem;
+      margin: 0; font-family: 'Segoe UI',sans-serif;
+      background: #0A0826; color: white;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; min-height: 100vh; padding: 2rem;
     }
     .container {
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
+      max-width: 600px; display: flex; flex-direction: column;
+      align-items: center; gap: 1rem;
     }
     .logo img {
-      height: 270px;
-      margin-bottom: 0.2rem;
+      height: 270px; margin-bottom: .2rem;
     }
     .wordmark {
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 700;
-      font-size: 3.7rem;
-      color: var(--gold);
-      margin: 0;
-      letter-spacing: 0.4px;
+      font-family: 'Satoshi',sans-serif; font-weight:700;
+      font-size:3.7rem; color:var(--gold); margin:0; letter-spacing:.4px;
     }
-    h1.hero { font-size: 2.6rem; margin: .5rem 0 1rem; }
-    p { font-size: 1.2rem; color: #cccccc; margin-bottom: 1.5rem; }
+    h1.hero { font-size:2.6rem; margin:.5rem 0 1rem; }
+    p { font-size:1.2rem; color:#cccccc; margin-bottom:1.5rem; }
 
     form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
+      display:flex; flex-direction:column; align-items:center;
+      gap:1rem; width:100%;
     }
     input[type="email"] {
-      width: 100%;
-      max-width: 400px;
-      padding: 1rem;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
+      width:100%; max-width:400px; padding:1rem;
+      border:none; border-radius:6px; font-size:1rem;
     }
-    /* Hidden honeypot + referrer */
     input[name="hp"],
     input[name="referrer"] {
       display: none;
     }
     button {
-      background-color: #FFD700;
-      color: #0A0826;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.2s;
+      background:#FFD700; color:#0A0826;
+      padding:1rem 2rem; font-size:1rem; font-weight:700;
+      border:none; border-radius:6px; cursor:pointer;
+      transition:background-color .2s;
     }
-    button:hover { background-color: #e6c200; }
+    button:hover { background:#e6c200; }
 
     .confirmation {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      color: #cccccc;
+      display:none; flex-direction:column;
+      align-items:center; gap:1rem; color:#cccccc;
     }
-    .confirmation strong { color: var(--gold); }
+    .confirmation strong { color:var(--gold); }
     .ref-link {
-      font-size: .9rem;
-      background: #11102F;
-      padding: .75rem;
-      border-radius: 6px;
-      color: #FFF;
-      word-break: break-all;
-      width: 100%;
-      max-width: 400px;
+      font-size:.9rem; background:#11102F; padding:.75rem;
+      border-radius:6px; color:#FFF;
+      word-break:break-all; width:100%; max-width:400px;
     }
 
     .how-it-works-link a {
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: bold;
+      color:var(--gold); text-decoration:none; font-weight:700;
     }
-    .how-it-works-link a:hover { text-decoration: underline; }
+    .how-it-works-link a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
   <div class="container">
+
     <div class="logo">
       <img src="arch_icon.png" alt="Portico Arch Icon"/>
       <h1 class="wordmark">Portico</h1>
@@ -125,11 +89,11 @@
     <h1 class="hero">Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
 
-    <!-- 1) Waitlist Form -->
+    <!-- 1) Signup Form -->
     <form id="waitlist-form">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <input type="text" name="hp" autocomplete="off" />
-      <input type="hidden" name="referrer" id="referrer" value="" />
+      <input type="email" name="email" placeholder="Enter your email" required/>
+      <input type="text" name="hp" autocomplete="off"/>
+      <input type="hidden" name="referrer" id="referrer" value=""/>
       <button type="submit">Join the Waitlist</button>
     </form>
 
@@ -145,31 +109,39 @@
     <div class="how-it-works-link">
       <p><a href="how-it-works.html">Learn how it works →</a></p>
     </div>
+
   </div>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbxZQd72ua9ikbuJ_ew6OmV3rLlHBDTkmtk2_17whRMhKfzAJpn76xhOn-awaSKU3QcqEw/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbxhYnsltxVSTJCWAzwPYRHXADx3O2_dpLTeU004MdOwwIfBeZOlEwRRRk3rJ4g3wtJbhA/exec';
 
-    // On load: if user already signed up, show their stored code & position
-    window.addEventListener('DOMContentLoaded', () => {
-      const storedCode = localStorage.getItem('portico_code');
-      const storedPos  = localStorage.getItem('portico_position');
-      if (storedCode && storedPos) {
-        document.getElementById('waitlist-form').style.display     = 'none';
-        document.getElementById('inviteCode').textContent         = storedCode;
-        document.getElementById('waitPosition').textContent       = `#${storedPos}`;
-        document.getElementById('refLink').textContent            =
-          `${window.location.origin}/index.html?ref=${storedCode}`;
-        document.getElementById('confirmation').style.display     = 'flex';
+    // On load: fetch stored code or ?ref=, then GET real position
+    window.addEventListener('DOMContentLoaded', async () => {
+      let code = localStorage.getItem('portico_code');
+      const params = new URLSearchParams(location.search);
+      if (!code && params.get('ref')) code = params.get('ref');
+
+      if (code) {
+        const res = await fetch(`${API_URL}?ref=${code}`);
+        const json = await res.json();
+        if (!json.error) {
+          localStorage.setItem('portico_code', json.code);
+          localStorage.setItem('portico_position', json.position);
+          document.getElementById('waitlist-form').style.display = 'none';
+          document.getElementById('inviteCode').textContent   = json.code;
+          document.getElementById('waitPosition').textContent = `#${json.position}`;
+          document.getElementById('refLink').textContent      =
+            `${location.origin}/index.html?ref=${json.code}`;
+          document.getElementById('confirmation').style.display = 'flex';
+        }
       }
     });
 
-    // Capture any ?ref= param and stash in hidden field
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get('ref');
-    if (ref) document.getElementById('referrer').value = ref;
+    // Capture any ?ref= into the form
+    const queryRef = new URLSearchParams(window.location.search).get('ref');
+    if (queryRef) document.getElementById('referrer').value = queryRef;
 
-    // Handle form submission
+    // Handle form submission (POST)
     document.getElementById('waitlist-form').addEventListener('submit', async e => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -178,16 +150,13 @@
       const json     = await res.json();
       if (json.error) return alert('Error: ' + json.error);
 
-      // Store and display results
       localStorage.setItem('portico_code', json.code);
       localStorage.setItem('portico_position', json.position);
+      document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('inviteCode').textContent   = json.code;
       document.getElementById('waitPosition').textContent = `#${json.position}`;
       document.getElementById('refLink').textContent      =
-        `${window.location.origin}/index.html?ref=${json.code}`;
-
-      // Swap UI
-      e.target.style.display                  = 'none';
+        `${location.origin}/index.html?ref=${json.code}`;
       document.getElementById('confirmation').style.display = 'flex';
     });
   </script>
