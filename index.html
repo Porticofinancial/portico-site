@@ -6,49 +6,41 @@
   <title>Portico</title>
   <meta name="description" content="Invest like an insider—without needing to be one."/>
 
-  <!-- Open Graph & Twitter Card omitted for brevity -->
+  <!-- Open Graph & Twitter Card tags omitted for brevity -->
 
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
   <style>
     :root { --gold: #E6B200; }
-    body {
-      margin: 0; font-family: 'Segoe UI',sans-serif;
-      background: #0A0826; color: white;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; min-height: 100vh; padding: 2rem;
+    body { margin:0; font-family:'Segoe UI',sans-serif; background:#0A0826; color:#fff;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      min-height:100vh; padding:2rem;
     }
-    .container {
-      max-width: 600px; display: flex; flex-direction: column;
-      align-items: center; gap: 1rem;
+    .container { max-width:600px; display:flex; flex-direction:column;
+      align-items:center; gap:1rem;
     }
-    .logo img { height: 270px; margin-bottom: .2rem; }
-    .wordmark {
-      font-family: 'Satoshi',sans-serif; font-weight:700;
+    .logo img { height:270px; margin-bottom:.2rem; }
+    .wordmark { font-family:'Satoshi',sans-serif; font-weight:700;
       font-size:3.7rem; color:var(--gold); margin:0; letter-spacing:.4px;
     }
     h1.hero { font-size:2.6rem; margin:.5rem 0 1rem; }
-    p { font-size:1.2rem; color:#cccccc; margin-bottom:1.5rem; }
+    p { font-size:1.2rem; color:#ccc; margin-bottom:1.5rem; }
 
-    form {
-      display:flex; flex-direction:column; align-items:center;
-      gap:1rem; width:100%;
-    }
+    form { display:flex; flex-direction:column; align-items:center; gap:1rem; width:100%; }
     input[type="email"] {
-      width:100%; max-width:400px; padding:1rem;
-      border:none; border-radius:6px; font-size:1rem;
+      width:100%; max-width:400px; padding:1rem; border:none;
+      border-radius:6px; font-size:1rem;
     }
     input[name="hp"], input[name="referrer"] { display:none; }
     button {
-      background:#FFD700; color:#0A0826;
-      padding:1rem 2rem; font-size:1rem; font-weight:700;
-      border:none; border-radius:6px; cursor:pointer;
-      transition:background-color .2s;
+      background:#FFD700; color:#0A0826; padding:1rem 2rem;
+      font-size:1rem; font-weight:700; border:none; border-radius:6px;
+      cursor:pointer; transition:background-color .2s;
     }
     button:hover { background:#e6c200; }
 
     .confirmation {
-      display:none; flex-direction:column;
-      align-items:center; gap:1rem; color:#cccccc;
+      display:none; flex-direction:column; align-items:center;
+      gap:1rem; color:#ccc;
     }
     .confirmation strong { color:var(--gold); }
     .ref-link {
@@ -57,15 +49,16 @@
       width:100%; max-width:400px;
     }
 
-    .how-it-works-link a {
+    .how-it-works-link a,
+    .leaderboard-link a {
       color:var(--gold); text-decoration:none; font-weight:700;
     }
-    .how-it-works-link a:hover { text-decoration:underline; }
+    .how-it-works-link a:hover,
+    .leaderboard-link a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
   <div class="container">
-
     <div class="logo">
       <img src="arch_icon.png" alt="Portico Arch Icon"/>
       <h1 class="wordmark">Portico</h1>
@@ -74,7 +67,7 @@
     <h1 class="hero">Private Equity, Opened.</h1>
     <p>Invest like an insider—without needing to be one.</p>
 
-    <!-- Signup Form -->
+    <!-- 1) Signup Form -->
     <form id="waitlist-form">
       <input type="email" name="email" placeholder="Enter your email" required/>
       <input type="text" name="hp" autocomplete="off"/>
@@ -82,7 +75,7 @@
       <button type="submit">Join the Waitlist</button>
     </form>
 
-    <!-- Confirmation Panel -->
+    <!-- 2) Confirmation Panel -->
     <div class="confirmation" id="confirmation">
       <p>✅ You’re on the waitlist!</p>
       <p>Your invite code: <strong id="inviteCode"></strong></p>
@@ -91,30 +84,31 @@
       <p>Share this link to move up the queue 🔥</p>
     </div>
 
+    <!-- 3) Links -->
     <div class="how-it-works-link">
       <p><a href="how-it-works.html">Learn how it works →</a></p>
     </div>
-
+    <div class="leaderboard-link">
+      <p><a href="leaderboard.html">See the top referrers →</a></p>
+    </div>
   </div>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbxhYnsltxVSTJCWAzwPYRHXADx3O2_dpLTeU004MdOwwIfBeZOlEwRRRk3rJ4g3wtJbhA/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbygUA57xelJcKiAFnbgm1yvHD4snsly3HalIBgwchmqJmoH9s1gpIoH5Amjnyz0RGvjfQ/exec';
 
-    // 1) Capture any ?ref= code immediately
+    // Capture any ?ref=code
     const urlParams = new URLSearchParams(location.search);
     const urlRef    = urlParams.get('ref');
     if (urlRef) document.getElementById('referrer').value = urlRef;
 
-    // 2) On load, show stored data instantly, then refresh from API
+    // On load: show cached immediately, then refresh true position
     window.addEventListener('DOMContentLoaded', async () => {
       let code = localStorage.getItem('portico_code');
       let pos  = localStorage.getItem('portico_position');
-
-      // if we have no code but a ?ref=, use that
       if (!code && urlRef) code = urlRef;
 
-      // if code exists, show panel right away
       if (code) {
+        // show stored
         document.getElementById('waitlist-form').style.display = 'none';
         document.getElementById('inviteCode').textContent     = code;
         document.getElementById('waitPosition').textContent   = pos ? `#${pos}` : '...';
@@ -122,7 +116,7 @@
           `${location.origin}/index.html?ref=${code}`;
         document.getElementById('confirmation').style.display = 'flex';
 
-        // now fetch the real position
+        // fetch updated
         try {
           const res  = await fetch(`${API_URL}?ref=${code}`);
           const json = await res.json();
@@ -135,12 +129,12 @@
               `${location.origin}/index.html?ref=${json.code}`;
           }
         } catch (err) {
-          console.warn('Could not refresh position:', err);
+          console.warn('Position refresh failed', err);
         }
       }
     });
 
-    // 3) Form submission
+    // Form submission (POST)
     document.getElementById('waitlist-form').addEventListener('submit', async e => {
       e.preventDefault();
       const query = new URLSearchParams(new FormData(e.target)).toString();
