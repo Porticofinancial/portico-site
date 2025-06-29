@@ -12,9 +12,7 @@
       --offwhite: #F4F4F4;
       --light:    #CCCCCC;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -53,13 +51,11 @@
     ul li::before { content: "•"; color: var(--gold); display: inline-block; width: 1em; }
 
     .section { margin-bottom: 2.5rem; }
-
     .split {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
     .split > div {
       flex: 1 1 48%;
     }
@@ -72,7 +68,6 @@
       background: var(--midnight);
     }
 
-    /* Sticky CTA */
     #ctaSticky {
       position: fixed;
       bottom: 20px;
@@ -140,16 +135,6 @@
         </ul>
         <p>Portico smashes every barrier.</p>
       </div>
-      <div style="background:#11102F; border:1px solid var(--gold); padding:1rem; font-size:0.9rem; border-radius:4px;">
-        <strong style="color:var(--gold);">Then:</strong><br>
-        $250K+ minimums<br>
-        Closed-door deals<br>
-        Opaque terms<br><br>
-        <strong style="color:var(--gold);">Now:</strong><br>
-        $100 access<br>
-        Open platform<br>
-        Full transparency
-      </div>
     </div>
 
     <div class="section split" data-aos="fade-up" data-aos-delay="200">
@@ -162,10 +147,6 @@
           <li><strong>Quarterly liquidity</strong>—exit at 95% NAV</li>
           <li><strong>Curated top-performing funds</strong>—handpicked for proven potential</li>
         </ul>
-      </div>
-      <div style="border-left: 3px solid var(--gold); padding: 1rem; font-size: 0.9rem; background: #11102F; border-radius: 4px;">
-        <em>“I invested $500 just to test it. The dashboard clarity and access blew me away.”</em><br>
-        <span style="color: var(--gold); font-weight: bold;">– Portico early user</span>
       </div>
     </div>
 
@@ -193,5 +174,45 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
-    const rPe = Math.pow(4.2, 1/20) - 1;
-    const rSp = Math.pow(2.5, 1/20) - 1
+    const rPe = Math.pow(4.2, 1/20);
+    const rSp = Math.pow(2.5, 1/20);
+    const peData = years.map((_, i) => +(Math.pow(rPe, i)).toFixed(2));
+    const spData = years.map((_, i) => +(Math.pow(rSp, i)).toFixed(2));
+
+    const ctx = document.getElementById('peChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          {
+            label: 'Private Equity',
+            data: peData,
+            borderColor: '#FFD700',
+            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: 'S&P 500',
+            data: spData,
+            borderColor: '#CCCCCC',
+            backgroundColor: 'rgba(204, 204, 204, 0.1)',
+            tension: 0.3,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        plugins: {
+          legend: { labels: { color: '#F4F4F4' } }
+        },
+        scales: {
+          x: { ticks: { color: '#CCCCCC' }, grid: { color: '#333' } },
+          y: { ticks: { color: '#CCCCCC' }, grid: { color: '#333' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
