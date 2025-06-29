@@ -1,230 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>How It Works – Portico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --midnight: #0A0826;
-      --gold:     #E6B200;
-      --offwhite: #F4F4F4;
-      --light:    #CCCCCC;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--midnight);
-      color: white;
-      line-height: 1.5;
-    }
-    header {
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      background: var(--midnight);
-    }
-    header a.home {
-      margin-right: auto;
-      color: var(--light);
-      text-decoration: none;
-      font-weight: bold;
-    }
-    header a.home:hover { color: var(--gold); }
-    header img.logo { height: 40px; }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
+  const rPe = Math.pow(4.2, 1 / 20) - 1;
+  const rSp = Math.pow(2.5, 1 / 20) - 1;
 
-    .wordmark {
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 700;
-      font-size: 3.7rem;
-      color: var(--gold);
-      text-align: center;
-      margin: 1rem 0 0.5rem;
-      letter-spacing: 0.4px;
-    }
+  const peData = years.map(y =>
+    parseFloat(Math.pow(1 + rPe, y - 2000).toFixed(2))
+  );
+  const spData = years.map(y =>
+    parseFloat(Math.pow(1 + rSp, y - 2000).toFixed(2))
+  );
 
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    h2 {
-      color: var(--gold);
-      font-size: 1.5rem;
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-    p {
-      color: var(--offwhite);
-      text-align: center;
-    }
-    ul {
-      list-style: none;
-      padding-left: 1.4rem;
-      margin: 1.2rem auto;
-      max-width: 650px;
-    }
-    ul li {
-      position: relative;
-      text-align: left;
-      padding-left: 1rem;
-      margin-bottom: 0.65rem;
-      color: var(--offwhite);
-    }
-    ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-
-    .section { margin-bottom: 2.75rem; }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--light);
-      font-size: 0.9rem;
-      background: var(--midnight);
-    }
-
-    #ctaSticky {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #11102F;
-      border: 1px solid var(--gold);
-      color: var(--offwhite);
-      padding: 1rem;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      z-index: 1000;
-      box-shadow: 0 0 12px rgba(255,215,0,0.15);
-    }
-    #ctaSticky a {
-      color: var(--gold);
-      text-decoration: underline;
-    }
-    @media (max-width: 600px) {
-      #ctaSticky {
-        right: 10px;
-        left: 10px;
-        bottom: 15px;
-        font-size: 0.9rem;
-        padding: 0.75rem;
+  const ctx = document.getElementById('peChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        {
+          label: 'Private Equity',
+          data: peData,
+          borderColor: '#E6B200',
+          borderWidth: 2,
+          fill: false,
+          tension: 0.25
+        },
+        {
+          label: 'S&P 500',
+          data: spData,
+          borderColor: '#888',
+          borderWidth: 2,
+          fill: false,
+          tension: 0.25
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#F4F4F4' } }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Year', color: '#F4F4F4' },
+          ticks: { color: '#F4F4F4' }
+        },
+        y: {
+          title: { display: true, text: 'Growth (×)', color: '#F4F4F4' },
+          ticks: { color: '#F4F4F4' }
+        }
       }
     }
-  </style>
-</head>
-<body>
-  <header>
-    <a href="index.html" class="home">← Home</a>
-    <img src="arch_icon.png" alt="Portico Logo" class="logo" />
-  </header>
-
-  <h1 class="wordmark">Portico</h1>
-
-  <main>
-    <div class="section">
-      <h2>Why Private Equity?</h2>
-      <p>Private equity has quietly outperformed public markets for decades—and now, it’s no longer reserved for institutions.</p>
-      <ul>
-        <li><strong>20–25% net IRR</strong> — institutional returns fueling compounding</li>
-        <li><strong>Avg. IRR 14%</strong> vs. ~10% on the S&P 500</li>
-        <li><strong>4.2× growth</strong> vs. 2.5× on the S&P (2000–2020)</li>
-      </ul>
-      <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1.25rem;"></canvas>
-      <p style="color:var(--light); font-size:1rem; font-style:italic; margin-top:1.5rem;">
-        “Over the last two decades, private equity has outpaced the S&P 500 by more than 1.5×.”<br>
-        <span style="color: var(--gold); font-weight: bold;">Portico opens that advantage to you.</span>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Wall Street’s Best-Kept Secret</h2>
-      <p>Until now, these returns were out of reach:</p>
-      <ul>
-        <li><strong>$250K+ minimums</strong> sidelining most investors</li>
-        <li><strong>Backroom accreditation</strong> keeping doors locked</li>
-        <li><strong>7–10 year lock-ups</strong> chaining up capital</li>
-        <li><strong>Opaque structures</strong> hiding the real story</li>
-      </ul>
-      <p>Portico smashes every barrier.</p>
-    </div>
-
-    <div class="section">
-      <h2>The Portico Advantage</h2>
-      <p>Experience private equity without the gatekeepers:</p>
-      <ul>
-        <li><strong>$100 minimums</strong> — start small, dream big</li>
-        <li><strong>No gatekeepers</strong> — everyone’s invited</li>
-        <li><strong>Quarterly liquidity</strong> — exit at 95% NAV</li>
-        <li><strong>Curated top-performing funds</strong> — handpicked for proven potential</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Join the Revolution</h2>
-      <p>
-        Transform your portfolio with powerhouse returns.<br>
-        <a href="index.html" style="color:var(--gold); text-decoration:underline;">Secure your spot →</a>
-      </p>
-    </div>
-  </main>
-
-  <footer>
-    © 2025 Portico Financial • <a href="index.html" style="color:var(--offwhite); text-decoration:none;">Home</a>
-  </footer>
-
-  <div id="ctaSticky">
-    <strong>Start with just $100</strong><br>
-    <a href="index.html">Secure your spot →</a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
-    const rPe = Math.pow(4.2, 1 / 20) - 1;
-    const rSp = Math.pow(2.5, 1 / 20) - 1;
-
-    const peData = years.map(y => (Math.pow(1 + rPe, y - 2000)).toFixed(2));
-    const spData = years.map(y => (Math.pow(1 + rSp, y - 2000)).toFixed(2));
-
-    new Chart(document.getElementById('peChart'), {
-      type: 'line',
-      data: {
-        labels: years,
-        datasets: [
-          {
-            label: 'Private Equity',
-            data: peData,
-            borderColor: '#E6B200',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.25
-          },
-          {
-            label: 'S&P 500',
-            data: spData,
-            borderColor: '#888',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.25
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: { color: '#F4F4F4' }
-          }
-        },
-        scales: {
-          x: {
-            title: { display: true, text: 'Year', color: '#F4F4F4' },
-            ticks: { color:
+  });
+});
+</script>
