@@ -4,17 +4,21 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Portico Leaderboard</title>
-  <meta name="description" content="See the top Portico referrers."/>
+  <meta name="description" content="Top Portico referrers."/>
 
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--gold:#E6B200}
-    body{margin:0;font-family:'Segoe UI',sans-serif;background:#0A0826;color:#fff;
-      display:flex;flex-direction:column;align-items:center;padding:2rem;}
-    h1{font-family:'Satoshi',sans-serif;font-weight:700;font-size:2.5rem;color:var(--gold);}
-    table{width:100%;max-width:600px;border-collapse:collapse;margin-top:1.5rem;}
-    th,td{padding:.75rem;border-bottom:1px solid #333;text-align:left;}
-    th{color:var(--gold);}td{color:#ccc;}
+    :root { --gold: #E6B200; }
+    body { margin:0; font-family:'Segoe UI',sans-serif; background:#0A0826; color:#fff;
+      display:flex; flex-direction:column; align-items:center; padding:2rem;
+    }
+    h1 { font-family:'Satoshi',sans-serif; font-weight:700;
+      font-size:2.5rem; color:var(--gold); margin-bottom:1rem;
+    }
+    table { width:100%; max-width:600px; border-collapse:collapse; }
+    th,td { padding:.75rem; border-bottom:1px solid #333; text-align:left; }
+    th { color:var(--gold); }
+    td { color:#ccc; }
   </style>
 </head>
 <body>
@@ -29,16 +33,16 @@
   </table>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbygUA57xelJcKiAFnbgm1yvHD4snsly3HalIBgwchmqJmoH9s1gpIoH5Amjnyz0RGvjfQ/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbw5zUIGIgOVb8SuwbeNBCN7kSFpA4j3VbMvriMWwenLAYFdH1bNr1fZsMwTmD0vmi_LnA/exec';
 
     async function loadLeaderboard() {
       const res = await fetch(`${API_URL}?action=leaderboard`);
       const data = await res.json();
       const tbody = document.querySelector('#leaderboard tbody');
       tbody.innerHTML = '';
-      data.forEach((row, i) => {
+      data.forEach((r, i) => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>#${i+1}</td><td>${row.code}</td><td>${row.count}</td>`;
+        tr.innerHTML = `<td>#${i+1}</td><td>${r.code}</td><td>${r.count}</td>`;
         tbody.appendChild(tr);
       });
     }
