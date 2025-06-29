@@ -50,25 +50,27 @@
       margin: 2rem auto;
       padding: 0 1rem;
     }
-    h1, h2 {
+    h2 {
       color: var(--gold);
-      margin-top: 2rem;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    p {
+      color: var(--offwhite);
       text-align: center;
     }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.5rem; }
-    p { color: var(--offwhite); text-align: center; }
     ul {
       list-style: none;
       padding-left: 1.4rem;
       margin: 1.2rem auto;
-      max-width: 600px;
+      max-width: 650px;
     }
     ul li {
       position: relative;
       text-align: left;
       padding-left: 1rem;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
       color: var(--offwhite);
     }
     ul li::before {
@@ -80,7 +82,7 @@
       line-height: 1;
     }
 
-    .section { margin-bottom: 2.5rem; }
+    .section { margin-bottom: 2.75rem; }
 
     footer {
       text-align: center;
@@ -135,7 +137,7 @@
         <li><strong>Avg. IRR 14%</strong> vs. ~10% on the S&P 500</li>
         <li><strong>4.2× growth</strong> vs. 2.5× on the S&P (2000–2020)</li>
       </ul>
-      <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1rem;"></canvas>
+      <canvas id="peChart" style="max-width:100%; height:auto; margin-top:1.25rem;"></canvas>
       <p style="color:var(--light); font-size:1rem; font-style:italic; margin-top:1.5rem;">
         “Over the last two decades, private equity has outpaced the S&P 500 by more than 1.5×.”<br>
         <span style="color: var(--gold); font-weight: bold;">Portico opens that advantage to you.</span>
@@ -186,10 +188,11 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const years = Array.from({ length: 21 }, (_, i) => 2000 + i);
-    const rPe = Math.pow(4.2, 1/20) - 1;
-    const rSp = Math.pow(2.5, 1/20) - 1;
-    const peData = years.map(y => Math.pow(1 + rPe, y - 2000).toFixed(2));
-    const spData = years.map(y => Math.pow(1 + rSp, y - 2000).toFixed(2));
+    const rPe = Math.pow(4.2, 1 / 20) - 1;
+    const rSp = Math.pow(2.5, 1 / 20) - 1;
+
+    const peData = years.map(y => (Math.pow(1 + rPe, y - 2000)).toFixed(2));
+    const spData = years.map(y => (Math.pow(1 + rSp, y - 2000)).toFixed(2));
 
     new Chart(document.getElementById('peChart'), {
       type: 'line',
@@ -200,29 +203,27 @@
             label: 'Private Equity',
             data: peData,
             borderColor: '#E6B200',
+            borderWidth: 2,
             fill: false,
-            tension: 0.3
+            tension: 0.25
           },
           {
             label: 'S&P 500',
             data: spData,
-            borderColor: '#999999',
+            borderColor: '#888',
+            borderWidth: 2,
             fill: false,
-            tension: 0.3
+            tension: 0.25
           }
         ]
       },
       options: {
         responsive: true,
-        scales: {
-          x: {
-            title: { display: true, text: 'Year', color: '#F4F4F4' },
-            ticks: { color: '#F4F4F4' }
-          },
-          y: {
-            title: { display: true, text: 'Cumulative Multiple', color: '#F4F4F4' },
-            ticks: { color: '#F4F4F4' }
-          }
-        },
         plugins: {
           legend: {
+            labels: { color: '#F4F4F4' }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text
