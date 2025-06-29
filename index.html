@@ -5,51 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portico</title>
   <meta name="description" content="Invest like an insider—without needing to be one." />
-
-  <!-- Open Graph & Twitter Card meta tags omitted for brevity -->
-
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet">
   <style>
     :root { --gold: #E6B200; }
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #0A0826; color: white;
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      min-height: 100vh; padding: 2rem;
+    body {
+      margin: 0; font-family: 'Segoe UI', sans-serif;
+      background-color: #0A0826; color: white;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; min-height: 100vh; padding: 2rem;
     }
-    .container { max-width: 600px; display: flex; flex-direction: column;
+    .container {
+      max-width: 600px; display: flex; flex-direction: column;
       align-items: center; gap: 1rem;
     }
     .logo img { height: 270px; margin-bottom: .2rem; }
-    .wordmark { font-family: 'Satoshi', sans-serif; font-weight:700;
+    .wordmark {
+      font-family: 'Satoshi', sans-serif; font-weight:700;
       font-size:3.7rem; color:var(--gold); margin:0; letter-spacing:.4px;
     }
     h1.hero { font-size:2.6rem; margin:.5rem 0 1rem; }
     p { font-size:1.2rem; color:#cccccc; margin-bottom:1.5rem; }
-
-    form { display:flex; flex-direction:column; align-items:center;
+    form {
+      display:flex; flex-direction:column; align-items:center;
       gap:1rem; width:100%;
     }
-    input[type="email"] { width:100%; max-width:400px;
+    input[type="email"] {
+      width:100%; max-width:400px;
       padding:1rem; border:none; border-radius:6px; font-size:1rem;
     }
-    button { background-color:#FFD700; color:#0A0826; padding:1rem 2rem;
-      font-size:1rem; font-weight:bold; border:none; border-radius:6px;
-      cursor:pointer; transition:background-color .2s;
+    /* hidden honeypot + referrer */
+    input[type="text"][name="hp"],
+    input[type="hidden"][name="referrer"] {
+      display: none;
+    }
+    button {
+      background-color:#FFD700; color:#0A0826;
+      padding:1rem 2rem; font-size:1rem; font-weight:bold;
+      border:none; border-radius:6px; cursor:pointer;
+      transition:background-color .2s;
     }
     button:hover { background-color:#e6c200; }
 
-    .confirmation { display:none; flex-direction:column;
+    .confirmation {
+      display:none; flex-direction:column;
       align-items:center; gap:1rem; color:#cccccc;
     }
     .confirmation strong { color:var(--gold); }
-    .ref-link { font-size:.9rem; background:#11102F; padding:.75rem;
+    .ref-link {
+      font-size:.9rem; background:#11102F; padding:.75rem;
       border-radius:6px; color:#FFF; word-break:break-all;
       width:100%; max-width:400px;
     }
+    .how-it-works-link a {
+      color: #FFD700; text-decoration: none; font-weight: bold;
+    }
+    .how-it-works-link a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="container">
-
     <div class="logo">
       <img src="arch_icon.png" alt="Portico Arch Icon"/>
       <h1 class="wordmark">Portico</h1>
@@ -61,6 +75,8 @@
     <!-- WAITLIST FORM -->
     <form id="waitlist-form">
       <input type="email" name="email" placeholder="Enter your email" required />
+      <input type="text" name="hp" autocomplete="off" />
+      <input type="hidden" name="referrer" id="referrer" value="" />
       <button type="submit">Join the Waitlist</button>
     </form>
 
@@ -76,43 +92,34 @@
     <div class="how-it-works-link">
       <p><a href="how-it-works.html">Learn how it works →</a></p>
     </div>
-
   </div>
 
   <script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbxZQd72ua9ikbuJ_ew6OmV3rLlHBDTkmtk2_17whRMhKfzAJpn76xhOn-awaSKU3QcqEw/exec';
+
+    // On page load, capture any ?ref=CODE param
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (ref) document.getElementById('referrer').value = ref;
+
     document.getElementById('waitlist-form').addEventListener('submit', async e => {
       e.preventDefault();
       const formData = new FormData(e.target);
+      // build query string
+      const query = new URLSearchParams(formData).toString();
+      // call Apps Script API
+      const res  = await fetch(`${API_URL}?${query}`, { method: 'POST' });
+      const json = await res.json();
+      if (json.error) return alert('Error: ' + json.error);
 
-      // POST to Formspree
-      await fetch('https://formspree.io/f/movwpaek', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
+      // Show results
+      document.getElementById('inviteCode').textContent  = json.code;
+      document.getElementById('waitPosition').textContent = `#${json.position}`;
+      document.getElementById('refLink').textContent      =
+        `${window.location.origin}/index.html?ref=${json.code}`;
 
-      // Sequential position logic starting at 307
-      let pos = localStorage.getItem('portico_position');
-      let position;
-      if (pos) {
-        position = parseInt(pos, 10) + 1;
-      } else {
-        position = 307;
-      }
-      const code = 'P' + Math.floor(Math.random() * 900000 + 100000);
-
-      // Store locally
-      localStorage.setItem('portico_code', code);
-      localStorage.setItem('portico_position', position);
-
-      // Populate confirmation panel
-      document.getElementById('inviteCode').textContent = code;
-      document.getElementById('waitPosition').textContent = `#${position}`;
-      const link = `${window.location.origin}/index.html?ref=${code}`;
-      document.getElementById('refLink').textContent = link;
-
-      // Toggle UI
-      e.target.style.display = 'none';
+      // Swap UI
+      e.target.style.display              = 'none';
       document.getElementById('confirmation').style.display = 'flex';
     });
   </script>
