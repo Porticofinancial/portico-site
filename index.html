@@ -4,12 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portico</title>
+  <meta name="description" content="Invest like an insider—without needing to be one." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://portico-site.vercel.app/" />
+  <meta property="og:title"       content="Portico – Private Equity, Opened." />
+  <meta property="og:description" content="Invest like an insider—without needing to be one." />
+  <meta property="og:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@Porticofinance" />
+  <meta name="twitter:title"       content="Portico – Private Equity, Opened." />
+  <meta name="twitter:description" content="Invest like an insider—without needing to be one." />
+  <meta name="twitter:image"       content="https://portico-site.vercel.app/assets/twitter_banner.png" />
+
   <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --gold: #E6B200;
-    }
-
+    :root { --gold: #E6B200; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -29,12 +42,6 @@
       align-items: center;
       gap: 1rem;
     }
-    .logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.2rem;
-    }
     .logo img {
       height: 270px;
       margin-bottom: 0.2rem;
@@ -43,19 +50,13 @@
       font-family: 'Satoshi', sans-serif;
       font-weight: 700;
       font-size: 3.7rem;
-      color: var(--gold);      /* ← now matches the arch exactly */
+      color: var(--gold);
       margin: 0;
       letter-spacing: 0.4px;
     }
-    h1.hero {
-      font-size: 2.6rem;
-      margin: 0.5rem 0 1rem;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #cccccc;
-      margin-bottom: 1.5rem;
-    }
+    h1.hero { font-size: 2.6rem; margin: .5rem 0 1rem; }
+    p { font-size: 1.2rem; color: #cccccc; margin-bottom: 1.5rem; }
+
     form {
       display: flex;
       flex-direction: column;
@@ -82,37 +83,33 @@
       cursor: pointer;
       transition: background-color 0.2s;
     }
-    button:hover {
-      background-color: #e6c200;
-    }
-    .how-it-works-link {
-      font-size: 1rem;
-    }
+    button:hover { background-color: #e6c200; }
+
     .how-it-works-link a {
       color: #FFD700;
       text-decoration: none;
       font-weight: bold;
     }
-    .how-it-works-link a:hover {
-      text-decoration: underline;
+    .how-it-works-link a:hover { text-decoration: underline; }
+
+    .share, .follow {
+      margin-top: 1.5rem;
     }
-    .share {
-      margin-top: 1.2rem;
-    }
-    .share p {
+    .share p, .follow p {
       color: #cccccc;
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
+      font-size: .95rem;
+      margin-bottom: .5rem;
     }
-    .share-icons {
+    .share-icons, .follow-icons {
       display: flex;
       gap: 1rem;
       justify-content: center;
     }
-    .share-icons img {
+    .share-icons img, .follow-icons img {
       width: 24px;
       height: 24px;
     }
+
     .footer {
       margin-top: 2rem;
       font-size: 0.9rem;
@@ -142,14 +139,29 @@
     <div class="share">
       <p>Know someone who should see this?</p>
       <div class="share-icons">
-        <a href="https://twitter.com/intent/tweet?text=Private%20Equity%2C%20Opened.%20Check%20out%20Portico%3A&url=https%3A%2F%2Fportico.app" target="_blank" title="Share on Twitter" rel="noopener">
-          <img src="https://img.icons8.com/ios-filled/24/FFD700/twitter.png" alt="Twitter" />
+        <a href="https://twitter.com/intent/tweet?text=Private%20Equity%2C%20Opened.%20Check%20out%20Portico%3A&url=https%3A%2F%2Fportico-site.vercel.app" target="_blank" rel="noopener">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/twitter.png" alt="Twitter"/>
         </a>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fportico.app&title=Portico%20-%20Private%20Equity%2C%20Opened.&summary=Invest%20like%20an%20insider—without%20needing%20to%20be%20one." target="_blank" title="Share on LinkedIn" rel="noopener">
-          <img src="https://img.icons8.com/ios-filled/24/FFD700/linkedin.png" alt="LinkedIn" />
+        <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fportico-site.vercel.app/&title=Portico%20–%20Private%20Equity%2C%20Opened." target="_blank" rel="noopener">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/reddit.png" alt="Reddit"/>
         </a>
-        <a href="mailto:?subject=Portico%20–%20Private%20Equity%2C%20Opened&body=Portico%20is%20making%20private%20equity%20accessible%20to%20everyone.%20Check%20it%20out%3A%20https%3A%2F%2Fportico.app" title="Share via Email">
-          <img src="https://img.icons8.com/ios-filled/24/FFD700/new-post.png" alt="Email" />
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fportico-site.vercel.app&title=Portico%20–%20Private%20Equity%2C%20Opened.&summary=Invest%20like%20an%20insider%E2%80%94without%20needing%20to%20be%20one." target="_blank" rel="noopener">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/linkedin.png" alt="LinkedIn"/>
+        </a>
+        <a href="mailto:?subject=Portico%20–%20Private%20Equity%2C%20Opened&body=Portico%20is%20making%20private%20equity%20accessible%20to%20everyone.%20Check%20it%20out%3A%20https%3A%2F%2Fportico-site.vercel.app" title="Share via Email">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/new-post.png" alt="Email"/>
+        </a>
+      </div>
+    </div>
+
+    <div class="follow">
+      <p>Follow us:</p>
+      <div class="follow-icons">
+        <a href="https://x.com/Porticofinance" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/twitter.png" alt="Twitter"/>
+        </a>
+        <a href="https://www.reddit.com/user/Porticofinancial/" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.icons8.com/ios-filled/24/FFD700/reddit.png" alt="Reddit"/>
         </a>
       </div>
     </div>
@@ -169,7 +181,8 @@
         });
         alert(res.ok
           ? 'Thank you! You are on the waitlist.'
-          : 'Oops! Something went wrong, please try again.');
+          : 'Oops! Something went wrong, please try again.'
+        );
         if (res.ok) e.target.reset();
       } catch {
         alert('Network error. Please try again.');
